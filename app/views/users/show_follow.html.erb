@@ -1,0 +1,42 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <div class="gravatar">
+      <% if @user.picture.present? %>
+          <a href="<%= @user.picture_url %>"><%= image_tag(@user.picture_url, :width => 52) %></a>
+      <% else %>
+          <%= image_tag("default.png", :width => 52) %>
+      <% end %>
+      </div>
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Microposts:</b> <%= @user.microposts.count %></span>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+      <% if @users.any? %>
+          <div class="user_avatars">
+            <% @users.each do |user| %>
+                <div class="gravatar">
+                <% if user.picture.present? %>
+                    <%= image_tag(user.picture_url, :width => 30) %>
+                <% else %>
+                    <%= image_tag("default.png", :width => 30) %>
+                <% end %>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+    </section>
+  </aside>
+  <div class="span8">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+        <ul class="users">
+          <%= render @users %>
+        </ul>
+        <%= will_paginate %>
+    <% end %>
+  </div>
+</div>

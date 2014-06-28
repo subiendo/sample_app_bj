@@ -1,0 +1,14 @@
+<li>
+  <div class="gravatar">
+    <% if user.picture.present? %>
+        <a href="<%= user.picture_url %>"><%= image_tag(user.picture_url, :width => 52) %></a>
+    <% else %>
+        <%= image_tag("default.png", :width => 52) %>
+    <% end %>
+  </div>
+  <%= link_to user.name, user %>
+  <% if current_user.admin? && !current_user?(user) %>
+      | <%= link_to "delete", user, method: :delete,
+                    data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

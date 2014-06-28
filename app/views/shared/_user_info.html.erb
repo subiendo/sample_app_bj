@@ -1,0 +1,16 @@
+<div class="gravatar">
+<% if current_user.picture.present? %>
+    <a href ="<%= current_user.picture_url %>"><%= image_tag(current_user.picture_url, :width => 52) %></a>
+<% else %>
+    <%= image_tag("default.png", :width => 52) %>
+<% end %>
+</div>
+<h1>
+  <%= current_user.name %>
+</h1>
+<span>
+  <%= link_to "view my profile", current_user %>
+</span>
+<span>
+  <%= pluralize(current_user.microposts.count, "micropost") %>
+</span>

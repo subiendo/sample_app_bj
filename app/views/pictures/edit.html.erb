@@ -1,0 +1,4 @@
+<%= direct_upload_form_for @uploader, :html => {:multipart => true} do |f| %>
+    <%= f.file_field :picture %>
+    <%= f.submit "Upload picture" %>
+<% end %>
